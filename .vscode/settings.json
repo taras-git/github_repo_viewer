@@ -1,0 +1,17 @@
+{
+  "editor.fontSize": 16,
+  "window.zoomLevel": 2,
+  "debug.console.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "files.exclude": {
+    "**/.git": false,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/*.freezed.dart": true,
+    "**/*.g.dart": true,
+    "**/.gitkeep": true
+  },
+  "explorerExclude.backup": null
+}
