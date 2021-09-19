@@ -98,9 +98,12 @@ class GithubAuthenticator {
 
   Future<Either<AuthFailure, Unit>> signOut() async {
     try {
-      final accessToken = _credentialsStorage
-          .read()
-          .then((credentials) => credentials?.accessToken);
+      final accessToken =
+          // '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';
+          await _credentialsStorage
+              .read()
+              .then((credentials) => credentials?.accessToken);
+      accessToken == null ? print("AT NULL ") : print("AT $accessToken");
 
       final usernameAndPassword =
           stringToBase64.encode('$clientId:$clientSecret');

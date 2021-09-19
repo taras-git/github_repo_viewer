@@ -12,6 +12,8 @@ final initializationProvider = FutureProvider<Unit>((ref) async {
   ref.read(dioProvider)
     ..options = BaseOptions(
       headers: {'Accept': 'application/vnd.github.v3.html+json'},
+      validateStatus: (status) =>
+          status != null && status >= 200 && status < 400,
     )
     ..interceptors.add(ref.read(oAuth2InterceptorProvider));
   final authNotifier = ref.read(authNotifierProvider.notifier);
@@ -46,6 +48,8 @@ class AppWidget extends StatelessWidget {
               });
         },
         child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          debugShowMaterialGrid: false,
           title: 'Repo Viewer',
           routeInformationParser: appRouter.defaultRouteParser(),
           routerDelegate: appRouter.delegate(),

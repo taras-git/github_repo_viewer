@@ -6,12 +6,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:repo_viewer/auth/shared/providers.dart';
 import 'package:repo_viewer/core/presentation/routes/app_router.gr.dart';
+// import 'package:riverpod/riverpod.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetReference reference) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -35,7 +36,7 @@ class SignInPage extends ConsumerWidget {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
-                      context
+                      ref
                           .read(authNotifierProvider.notifier)
                           .signIn((authotizationUrl) {
                         print("AUTH URL $authotizationUrl");
