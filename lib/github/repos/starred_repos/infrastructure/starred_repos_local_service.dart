@@ -38,4 +38,11 @@ class StarredReposLocalService {
         )
         .toList();
   }
+
+  Future<int> getLocalPageCount() async {
+    final repoCount =
+        (await _store.count(_db.dbInstance) / PaginationConfig.itemsPerPage)
+            .ceil();
+    return repoCount;
+  }
 }

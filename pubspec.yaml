@@ -23,7 +23,6 @@ dependencies:
       path: packages/hooks_riverpod
   freezed_annotation: ^0.14.2
   webview_flutter: ^2.0.8
-  flash: ^2.0.0
   auto_route: ^2.2.0
   material_design_icons_flutter: 5.0.5955-rc.1
   json_annotation: ^4.0.1
@@ -33,6 +32,8 @@ dependencies:
   riverpod: ^1.0.0-dev.7
   flutter_riverpod: ^1.0.0-dev.7
   cached_network_image: ^3.1.0
+  shimmer: ^2.0.0
+  flash: ^2.0.2
 
 dev_dependencies:
   flutter_test:
