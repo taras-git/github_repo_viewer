@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:repo_viewer/auth/shared/providers.dart';
 import 'package:repo_viewer/github/core/shared/providers.dart';
 import 'package:repo_viewer/github/repos/starred_repos/presentation/paginated_repos_list_view.dart';
+import 'package:repo_viewer/search/presentation/search_bar.dart';
 
 class StarredReposPage extends ConsumerStatefulWidget {
   const StarredReposPage({Key? key}) : super(key: key);
@@ -27,18 +29,31 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Starred repos'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              ref.read(authNotifierProvider.notifier).signOut();
-            },
-            icon: const Icon(MdiIcons.logoutVariant),
-          )
-        ],
+      body: SearchBar(
+        title: 'Starred repositories',
+        hint: 'Search all repositories...',
+        onShouldNavigateToResultPage: (searchTerm) {
+          AutoRouter.of(context)
+              .push(SearchedReposRoute(searchTerm: searchTerm));
+        },
+        onSignOutButtonPressed: () {
+          // ref.read(authNotifierProvider.notifier).signOut();
+          context.read(authNotifierProvider.notifier).signOut();
+        },
+        body: PaginatedReposListView(
+          paginatedReposNotifierProvider: starredReposNotifierProvider,
+          getNextPage: (/*ref*/ context) {
+            // ref
+            //     .read(starredReposNotifierProvider.notifier)
+            //     .getNextStarredReposPage();
+            context
+                .read(starredReposNotifierProvider.notifier)
+                .getNextStarredReposPage();
+          },
+          noResultsMessage:
+              "That's about everything we could find in your starred repos right now.",
+        ),
       ),
-      body: PaginatedReposListView(),
     );
   }
 }

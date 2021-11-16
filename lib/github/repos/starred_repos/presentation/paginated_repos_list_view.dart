@@ -9,6 +9,11 @@ import 'package:repo_viewer/github/repos/starred_repos/presentation/loading_repo
 import 'package:repo_viewer/github/repos/starred_repos/presentation/repo_tile.dart';
 
 class PaginatedReposListView extends StatefulWidget {
+  final AutoDisposeStateNotifierProvider<PaginatedReposNotifier,
+      PaginatedReposState> paginatedReposNotifierProvider;
+  final void Function(/*WidgetReference ref*/ BuildContext context) getNextPage;
+  final String noResultsMessage;
+
   const PaginatedReposListView({
     Key? key,
   }) : super(key: key);
